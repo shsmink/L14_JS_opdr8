@@ -1,26 +1,31 @@
-const person = function() {
-    var person = prompt("Welkom! Wat is je naam?", "Jouw naam");
+let guessedNumber = null;
+let name;
+let guess;
+const min = 0;
+const max = 25;
 
-    if (person != null) {
-    alert("Hey " + person + "! Leuk dat je dit spel komt spelen.");
-    }
+while (name === undefined || name === null || name.length === 0) {
+  name = prompt("Welkom bij het spel Guess the number! Wat is je naam?");
 }
 
-const guessNumber = function(number) {
-    var number = prompt("Raad het juiste getal, kies een nummer van 0 tot en met 25", "Het door jou gekozen nummer");
+alert("Leuk dat je dit spel komt spelen " + name + "! Laten we snel beginnen.");
 
-    if (number === (Math.floor((Math.random() * 25) + 0))) {
-        alert ("Dat is het juiste getal! Gefeliciteerd je hebt gewonnen.");
-        endGame();
-    } else {
-        alert ("Dat is niet correct");
-        guessNumber();
-    }
-};
+guessedNumber = Math.floor(Math.random() * (max - min)) + min;
+console.log("Pssst het nummer is: " + guessedNumber);
 
-const endGame = function(){
-    alert ("Bedankt voor het spelen! Tot de volgende keer.")
+while (guess !== guessedNumber) {
+  guess = parseInt(prompt("Kies een willekeurig getal van 0 tot en met 25.."));
+  alert("Je gok is: " + guess);
+  if (guess > guessedNumber) {
+    alert("Helaas, je gok was te hoog. Probeer het opnieuw:");
+  } else if (guess < guessedNumber) {
+    alert("Helaaaas, je gok was te laag. Probeer het opnieuw:");
+  } else {
+    alert("Goed geraden! Het nummer was inderdaad: " + guess);
+    alert(
+      "We sluiten de game af. Bedankt voor het spelen " + name + ", tot de volgende keer!"
+    );
+  }
 }
 
-person();
-guessNumber();
+// Bonusvragen nog uitvogelen
